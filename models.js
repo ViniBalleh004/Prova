@@ -1,3 +1,16 @@
+/**
+ * Representa um filme no sistema.
+ *
+ * Campos do banco de dados:
+ * - id: integer PK not null
+ * - estilo: tinyint FK null
+ * - nome: varchar(30) not null
+ * - ano: integer (4 dígitos) not null
+ * - duracao: integer (3 dígitos) not null
+ * - foto: varchar(45) not null
+ * - sinopse: long varchar null
+ * - video: varchar(45) null
+ */
 class Filme {
   constructor({ id, estilo = null, nome, ano, duracao, foto, sinopse = null, video = null }) {
     this.id = id;
@@ -21,22 +34,33 @@ class Filme {
   }
 }
 
+/**
+ * Representa uma locação de filme no sistema.
+ *
+ * Campos do banco de dados:
+ * - id: double PK not null
+ * - filmeId: integer FK null
+ * - clienteId: numeric(1B) null
+ * - emissao: timestamp null
+ * - devolucao: timestamp null
+ * - valor: decimal(10,2) null
+ */
 class Locacao {
-  constructor({ id, filmeId, cliente, dataLocacao, dataDevolucao = null, status }) {
+  constructor({ id, filmeId = null, clienteId = null, emissao = null, devolucao = null, valor = null }) {
     this.id = id;
     this.filmeId = filmeId;
-    this.cliente = cliente;
-    this.dataLocacao = dataLocacao;
-    this.dataDevolucao = dataDevolucao;
-    this.status = status;
+    this.clienteId = clienteId;
+    this.emissao = emissao;
+    this.devolucao = devolucao;
+    this.valor = valor;
   }
 
-  update({ filmeId, cliente, dataLocacao, dataDevolucao, status }) {
+  update({ filmeId, clienteId, emissao, devolucao, valor }) {
     if (filmeId !== undefined) this.filmeId = filmeId;
-    if (cliente !== undefined) this.cliente = cliente;
-    if (dataLocacao !== undefined) this.dataLocacao = dataLocacao;
-    if (dataDevolucao !== undefined) this.dataDevolucao = dataDevolucao;
-    if (status !== undefined) this.status = status;
+    if (clienteId !== undefined) this.clienteId = clienteId;
+    if (emissao !== undefined) this.emissao = emissao;
+    if (devolucao !== undefined) this.devolucao = devolucao;
+    if (valor !== undefined) this.valor = valor;
   }
 }
 
